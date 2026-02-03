@@ -1,0 +1,20 @@
+<svg width="250" height="60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo circles (DDO style) - White version for footer -->
+  <g transform="translate(10, 10)">
+    <!-- Left semi-circle -->
+    <path d="M 0 20 A 20 20 0 0 1 20 0 L 20 40 A 20 20 0 0 1 0 20 Z" fill="#FFFFFF"/>
+    <!-- Middle semi-circle -->
+    <path d="M 20 0 A 20 20 0 0 1 40 20 A 20 20 0 0 1 20 40 L 20 0 Z" fill="#FFFFFF"/>
+    <!-- Right circle -->
+    <circle cx="60" cy="20" r="20" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Text: Tradox -->
+  <text x="95" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF">Tradox</text>
+  
+  <!-- Text: Global -->
+  <text x="175" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#5BA3E8">Global</text>
+  
+  <!-- Tagline -->
+  <text x="95" y="47" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Global Thinking. Real Impact.</text>
+</svg>
