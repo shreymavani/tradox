@@ -1528,6 +1528,16 @@ a { color: inherit; }
     background: var(--paper);
 }
 
+/* "Our Product Range" gets its own themed, shaded band so the shift is clear */
+.product-range {
+    padding: var(--section-y) 0;
+    background:
+        radial-gradient(130% 120% at 50% 0%, color-mix(in srgb, var(--page-accent) 12%, transparent), transparent 58%),
+        var(--page-tint);
+    border-top: 1px solid color-mix(in srgb, var(--page-accent) 22%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--page-accent) 22%, transparent);
+}
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
