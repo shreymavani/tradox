@@ -279,7 +279,7 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.solution-card, .feature-item, .product-card');
+    const animatedElements = document.querySelectorAll('.solution-card, .feature-item, .product-card, .about-card, .commitment-item, .industry-tag');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
