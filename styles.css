@@ -54,7 +54,18 @@
     --flute-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='12' viewBox='0 0 36 12'%3E%3Cpath d='M0 10 Q9 1 18 10 T36 10' fill='none' stroke='%23000' stroke-width='2.4'/%3E%3C/svg%3E");
 
     --section-y: clamp(4rem, 8vw, 7rem);
+
+    /* Per-page accent (overridden by body theme classes) */
+    --page-accent: #1655C0;
+    --page-accent-2: #2B8AE8;
+    --page-tint: #EAF2FE;
+    --page-glow: rgba(43, 138, 232, 0.30);
 }
+
+/* Interior page themes, grounded in each product's material */
+body.theme-kraft { --page-accent: #C0731F; --page-accent-2: #E7A24A; --page-tint: #FBF0E1; --page-glow: rgba(200, 122, 46, 0.34); }
+body.theme-cyan  { --page-accent: #1487A6; --page-accent-2: #35B5D1; --page-tint: #E2F4F9; --page-glow: rgba(53, 181, 209, 0.32); }
+body.theme-steel { --page-accent: #3C5488; --page-accent-2: #5B76A6; --page-tint: #E9EDF7; --page-glow: rgba(91, 118, 166, 0.34); }
 
 /* ---------- Base ---------- */
 html {
@@ -877,16 +888,18 @@ a { color: inherit; }
 }
 
 .feature-item {
+    position: relative;
     background: var(--card);
     padding: 2rem 1.75rem;
     border-radius: var(--r);
     border: 1px solid var(--line);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .feature-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow);
+    border-color: color-mix(in srgb, var(--page-accent) 40%, var(--line));
 }
 
 /* the .feature-number becomes a small technical index tag */
@@ -898,7 +911,7 @@ a { color: inherit; }
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.12em;
-    color: var(--kraft);
+    color: var(--page-accent);
     margin-bottom: 1.1rem;
     opacity: 1;
 }
@@ -907,8 +920,11 @@ a { color: inherit; }
     content: "";
     width: 22px;
     height: 2px;
-    background: var(--kraft);
+    background: var(--page-accent);
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.feature-item:hover .feature-number::before { width: 40px; }
 
 .feature-item h3 {
     font-size: 1.2rem;
@@ -1171,32 +1187,59 @@ a { color: inherit; }
     opacity: 0.65;
 }
 
-/* ---------- Interior page hero ---------- */
+/* ---------- Interior page hero (dynamic, themed) ---------- */
 .page-hero {
     position: relative;
     background: var(--grad-ink);
     color: var(--white);
-    padding: clamp(3.5rem, 7vw, 5.5rem) 0 clamp(3.5rem, 6vw, 5rem);
+    padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(4.5rem, 8vw, 6rem);
     text-align: center;
     overflow: hidden;
 }
 
+/* Two drifting glows: brand blue + the page's own accent */
 .page-hero::before {
     content: "";
     position: absolute;
-    top: -30%;
-    right: -5%;
-    width: 40vw;
-    height: 40vw;
-    max-width: 520px;
-    max-height: 520px;
-    background: radial-gradient(circle, rgba(43, 138, 232, 0.3) 0%, transparent 64%);
+    top: -35%;
+    right: -6%;
+    width: 44vw;
+    height: 44vw;
+    max-width: 560px;
+    max-height: 560px;
+    background: radial-gradient(circle, rgba(43, 138, 232, 0.32) 0%, transparent 64%);
+    pointer-events: none;
+    will-change: transform;
+    animation: glowDriftA 22s ease-in-out infinite;
 }
 
-.page-hero .container { position: relative; z-index: 1; }
+.page-hero::after {
+    content: "";
+    position: absolute;
+    bottom: -45%;
+    left: -8%;
+    width: 40vw;
+    height: 40vw;
+    max-width: 500px;
+    max-height: 500px;
+    background: radial-gradient(circle, var(--page-glow) 0%, transparent 66%);
+    pointer-events: none;
+    will-change: transform;
+    animation: glowDriftB 27s ease-in-out infinite;
+}
+
+.page-hero .container { position: relative; z-index: 2; }
+
+.page-hero .eyebrow {
+    justify-content: center;
+    color: #9EC6FF;
+    margin-bottom: 1.1rem;
+}
+
+.page-hero .eyebrow::before { background: var(--page-accent-2); }
 
 .page-hero h1 {
-    font-size: clamp(2.2rem, 4.6vw, 3.2rem);
+    font-size: clamp(2.3rem, 4.8vw, 3.3rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     margin-bottom: 0.9rem;
@@ -1207,6 +1250,36 @@ a { color: inherit; }
     color: rgba(233, 242, 254, 0.82);
     max-width: 620px;
     margin: 0 auto;
+}
+
+/* Large, faint floating watermark of the page's subject */
+.page-hero-visual {
+    position: absolute;
+    top: 50%;
+    right: clamp(-40px, 2vw, 40px);
+    transform: translateY(-50%);
+    width: clamp(180px, 24vw, 300px);
+    height: clamp(180px, 24vw, 300px);
+    color: var(--page-accent-2);
+    opacity: 0.12;
+    z-index: 1;
+    pointer-events: none;
+    animation: floatY 8s ease-in-out infinite;
+}
+
+.page-hero-visual svg { width: 100%; height: 100%; }
+
+/* Conveyor flute along the bottom of the page hero */
+.page-hero .page-hero-flute {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 13px;
+    background-image: var(--flute);
+    background-repeat: repeat-x;
+    background-size: 36px 14px;
+    opacity: 0.6;
+    z-index: 2;
+    animation: fluteConveyor 1.6s linear infinite;
 }
 
 /* ---------- Products ---------- */
@@ -1222,30 +1295,54 @@ a { color: inherit; }
 }
 
 .product-card {
+    position: relative;
     background: var(--card);
     border-radius: var(--r-lg);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--line);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* Accent bar that draws across the top on hover */
+.product-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--page-accent), var(--page-accent-2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 3;
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
-    border-color: var(--sky-line);
+    border-color: color-mix(in srgb, var(--page-accent) 45%, var(--line));
 }
+
+.product-card:hover::before { transform: scaleX(1); }
 
 .product-image {
     width: 100%;
     height: 170px;
-    background: linear-gradient(135deg, var(--sky), #D6E7FD);
+    background:
+        radial-gradient(120% 130% at 100% 0%, color-mix(in srgb, var(--page-accent) 16%, transparent), transparent 58%),
+        linear-gradient(150deg, var(--page-tint), #ffffff);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 3.2rem;
     position: relative;
+    overflow: hidden;
+    transition: background 0.35s ease;
 }
+
+/* subject inside the image lifts + scales gently on hover */
+.product-image > * { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.product-card:hover .product-image > * { transform: scale(1.08) translateY(-2px); }
 
 /* fluted baseline on product imagery */
 .product-image::after {
@@ -1259,12 +1356,7 @@ a { color: inherit; }
     opacity: 0.5;
 }
 
-.product-img-screw { background: linear-gradient(135deg, #E9F2FE, #CFE2FB); }
-.product-img-bolt { background: linear-gradient(135deg, #E8EAF6, #C5CAE9); }
-.product-img-anchor { background: linear-gradient(135deg, #E0F2F1, #B2DFDB); }
-.product-img-stainless { background: linear-gradient(135deg, #EEF1F5, #D3DBE6); }
-.product-img-washer { background: linear-gradient(135deg, #FBEEDD, #F2D6AE); }
-.product-img-specialty { background: linear-gradient(135deg, #FBE6D3, #EFC79C); }
+/* Screw imagery inherits the page (steel) theme for a cohesive look */
 
 .product-content { padding: 1.6rem; }
 
@@ -1280,10 +1372,13 @@ a { color: inherit; }
 .product-features { list-style: none; }
 
 .product-features li {
-    padding: 0.28rem 0;
+    padding: 0.4rem 0;
     color: var(--text);
     font-size: 0.9rem;
+    border-top: 1px solid var(--line);
 }
+
+.product-features li:first-child { border-top: none; }
 
 /* ---------- About ---------- */
 .about-content { max-width: 1000px; margin: 0 auto; }
