@@ -65,7 +65,8 @@
 /* Interior page themes, grounded in each product's material */
 body.theme-kraft { --page-accent: #C0731F; --page-accent-2: #E7A24A; --page-tint: #FBF0E1; --page-glow: rgba(200, 122, 46, 0.34); }
 body.theme-cyan  { --page-accent: #1487A6; --page-accent-2: #35B5D1; --page-tint: #E2F4F9; --page-glow: rgba(53, 181, 209, 0.32); }
-body.theme-steel { --page-accent: #3C5488; --page-accent-2: #5B76A6; --page-tint: #E9EDF7; --page-glow: rgba(91, 118, 166, 0.34); }
+body.theme-paper { --page-accent: #3F8552; --page-accent-2: #5FB27A; --page-tint: #E7F5EC; --page-glow: rgba(95, 178, 122, 0.32); }
+body.theme-mono  { --page-accent: #7A4FB0; --page-accent-2: #A579D8; --page-tint: #F1EAFB; --page-glow: rgba(165, 121, 216, 0.32); }
 
 /* ---------- Base ---------- */
 html {
@@ -744,7 +745,8 @@ a { color: inherit; }
 
 .solution-card.sc-kraft { --accent: #C0731F; --accent-2: #E7A24A; --tint: #FBF0E1; }
 .solution-card.sc-cyan  { --accent: #1487A6; --accent-2: #35B5D1; --tint: #E2F4F9; }
-.solution-card.sc-steel { --accent: #3C5488; --accent-2: #5B76A6; --tint: #E9EDF7; }
+.solution-card.sc-paper { --accent: #3F8552; --accent-2: #5FB27A; --tint: #E7F5EC; }
+.solution-card.sc-mono  { --accent: #7A4FB0; --accent-2: #A579D8; --tint: #F1EAFB; }
 
 .solution-card:hover {
     transform: translateY(-10px);
@@ -1605,8 +1607,6 @@ a { color: inherit; }
     background-size: 36px 14px;
     opacity: 0.5;
 }
-
-/* Screw imagery inherits the page (steel) theme for a cohesive look */
 
 .product-content { padding: 1.6rem; }
 

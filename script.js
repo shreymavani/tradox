@@ -58,16 +58,18 @@ const productTypes = {
         'Industrial Parts Packaging',
         'Custom Solution'
     ],
-    screws: [
-        'Wood Screws',
-        'Machine Screws',
-        'Self-Tapping Screws',
-        'Hex Bolts & Nuts',
-        'Drywall Screws',
-        'Anchor Bolts',
-        'Stainless Steel Fasteners',
-        'Washers & Rivets',
-        'Specialty Fasteners'
+    paper: [
+        'Kraft Paper',
+        'Copier Paper',
+        'Duplex Board',
+        'FBB (Folding Box Board)',
+        'Tissue Paper',
+        'Custom Requirement'
+    ],
+    monocarton: [
+        '4-Layer Monocarton',
+        '6-Layer Monocarton',
+        'Custom Requirement'
     ]
 };
 
@@ -75,7 +77,8 @@ const productTypes = {
 const categoryEmails = {
     corrugated: 'corrugatedboxes@tradoxglobal.com',
     thermocol: 'thermocol@tradoxglobal.com',
-    screws: 'stationery@tradoxglobal.com',
+    paper: 'paper@tradoxglobal.com',
+    monocarton: 'monocarton@tradoxglobal.com',
     general: 'corrugatedboxes@tradoxglobal.com',
     bulk: 'corrugatedboxes@tradoxglobal.com'
 };

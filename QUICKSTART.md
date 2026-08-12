@@ -7,10 +7,11 @@ The website has been successfully created at:
 
 ## 📁 What's Included
 
-- ✅ Homepage (`index.html`) with 3 business divisions
+- ✅ Homepage (`index.html`) with 4 business divisions
 - ✅ Corrugated Boxes page (`corrugated-boxes.html`)
 - ✅ Thermocol Packaging page (`thermocol-packaging.html`)
-- ✅ Screws & Fasteners page (`screws.html`)
+- ✅ Paper Products page (`paper-products.html`)
+- ✅ Monocarton page (`monocarton.html`)
 - ✅ Contact page with smart category selection (`contact.html`)
 - ✅ Complete styling (`styles.css`)
 - ✅ Interactive JavaScript (`script.js`)
@@ -51,7 +52,8 @@ Visit each page and verify:
 - ✅ Homepage (index.html)
 - ✅ Corrugated Boxes page
 - ✅ Thermocol Packaging page
-- ✅ Screws & Fasteners page
+- ✅ Paper Products page
+- ✅ Monocarton page
 - ✅ Contact page
 
 ### 4. Test the Contact Form
@@ -64,7 +66,7 @@ Visit each page and verify:
 
 ### Homepage
 - Eye-catching hero section with gradient background
-- 3 business division cards with icons
+- 4 business division cards with icons
 - "Why Choose Us" section
 - Industries served tags
 - Call-to-action buttons

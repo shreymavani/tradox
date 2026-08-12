@@ -1,6 +1,6 @@
 # Tradox Global Website
 
-A modern, professional website for **Tradox Global** - a comprehensive packaging and fastening solutions provider.
+A modern, professional website for **Tradox Global** - a comprehensive packaging and paper solutions provider.
 
 ## About Tradox Global
 
@@ -9,7 +9,8 @@ A modern, professional website for **Tradox Global** - a comprehensive packaging
 Tradox Global is your trusted partner for:
 1. **Corrugated Boxes** - Premium quality packaging solutions
 2. **Thermocol Packaging** - Superior thermal insulation solutions
-3. **Screws & Fasteners** - Comprehensive fastening solutions
+3. **Paper Products** - Kraft, copier, duplex, FBB & tissue supplied to spec
+4. **Monocarton** - Retail-ready printed folding cartons (4-layer & 6-layer)
 
 ## Website Structure
 
@@ -17,14 +18,15 @@ Tradox Global is your trusted partner for:
 - **index.html** - Homepage with business divisions overview
 - **corrugated-boxes.html** - Corrugated boxes product page
 - **thermocol-packaging.html** - Thermocol packaging product page
-- **screws.html** - Screws & fasteners product page
+- **paper-products.html** - Paper products (kraft, copier, duplex, FBB, tissue) page
+- **monocarton.html** - Monocarton (4-layer & 6-layer) product page
 - **contact.html** - Contact form with category-specific inquiry options
 
 ### Features
 
 #### Home Page
 - Hero section with call-to-action buttons
-- Three business division cards with detailed features
+- Four business division cards with detailed features
 - "Why Choose Us" section with key benefits
 - Industries served showcase
 - Call-to-action section
@@ -39,7 +41,7 @@ Tradox Global is your trusted partner for:
 - Multiple contact methods (address, phone, email)
 - Business hours information
 - Smart contact form with:
-  - Category selection (Corrugated, Thermocol, Screws, General, Bulk Order)
+  - Category selection (Corrugated, Thermocol, Paper Products, Monocarton, General, Bulk Order)
   - Dynamic product type dropdown based on selected category
   - Quantity estimation field
   - Detailed requirements textarea
@@ -89,7 +91,8 @@ tradox-global-website/
 ├── index.html
 ├── corrugated-boxes.html
 ├── thermocol-packaging.html
-├── screws.html
+├── paper-products.html
+├── monocarton.html
 ├── contact.html
 ├── styles.css
 ├── script.js
