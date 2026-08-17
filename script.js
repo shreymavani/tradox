@@ -295,4 +295,36 @@ document.addEventListener('DOMContentLoaded', () => {
     statItems.forEach(item => {
         statsObserver.observe(item);
     });
+
+    // Contact click tracking (Google Ads / GA4 / GTM ready)
+    const trackContactClick = (eventName, label, href) => {
+        try {
+            if (typeof window.gtag === 'function') {
+                window.gtag('event', eventName, {
+                    event_category: 'contact',
+                    event_label: label || '',
+                    link_url: href || '',
+                    transport_type: 'beacon'
+                });
+            }
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: eventName,
+                contact_method: label || '',
+                link_url: href || ''
+            });
+        } catch (e) {
+            /* tracking is best-effort; never block the click */
+        }
+    };
+
+    document.querySelectorAll('[data-ga-event]').forEach(el => {
+        el.addEventListener('click', () => {
+            trackContactClick(
+                el.getAttribute('data-ga-event'),
+                el.getAttribute('data-ga-label'),
+                el.getAttribute('href')
+            );
+        });
+    });
 });
