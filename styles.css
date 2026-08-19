@@ -1295,9 +1295,8 @@ a { color: inherit; }
     font-size: 1rem;
     font-weight: 600;
     color: var(--white);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
 }
 
 .cc-arrow {
@@ -1316,7 +1315,7 @@ a { color: inherit; }
 /* WhatsApp gets its signature green tint */
 .cc-whatsapp { background: rgba(37, 211, 102, 0.08); border-color: rgba(37, 211, 102, 0.25); }
 .cc-whatsapp:hover { background: rgba(37, 211, 102, 0.14); border-color: rgba(37, 211, 102, 0.5); }
-.cc-whatsapp .cc-icon { background: rgba(37, 211, 102, 0.15); border-color: rgba(37, 211, 102, 0.35); color: #25D366; }
+.cc-whatsapp .cc-icon { background: #25D366; border-color: #25D366; color: #fff; }
 .cc-whatsapp:hover .cc-arrow { color: #25D366; }
 
 /* ---------- Footer ---------- */
@@ -1595,6 +1594,20 @@ a { color: inherit; }
 /* subject inside the image lifts + scales gently on hover */
 .product-image > * { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
 .product-card:hover .product-image > * { transform: scale(1.08) translateY(-2px); }
+
+/* Two-tone isometric product illustrations */
+.product-image svg {
+    width: auto;
+    height: 118px;
+    fill: none;
+    stroke: #1f2733;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    overflow: visible;
+}
+.product-image svg .det { stroke-width: 1.7; }
+.product-card:hover .product-image svg { transform: scale(1.06) translateY(-2px); }
 
 /* fluted baseline on product imagery */
 .product-image::after {
@@ -1930,6 +1943,78 @@ a { color: inherit; }
 
 .reveal.is-visible { opacity: 1; transform: none; }
 
+/* ---------- Floating quick-contact (Call + WhatsApp) ---------- */
+.floating-contact {
+    position: fixed;
+    left: clamp(14px, 2.5vw, 26px);
+    bottom: clamp(16px, 3vw, 28px);
+    z-index: 950;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.fab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    color: #fff;
+    box-shadow: 0 10px 26px rgba(10, 30, 61, 0.28);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fab svg { position: relative; z-index: 2; width: 30px; height: 30px; overflow: visible; }
+.fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 16px 34px rgba(10, 30, 61, 0.34); }
+.fab:active { transform: scale(0.95); }
+
+.fab-whatsapp { background: #25D366; }
+.fab-call { background: linear-gradient(145deg, var(--sky), var(--blue)); }
+
+/* Label that slides out on hover (desktop / mouse only) */
+.fab-label {
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-8px);
+    background: var(--ink);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.45rem 0.75rem;
+    border-radius: 9px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 8px 20px rgba(10, 30, 61, 0.24);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.fab-label::after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: var(--ink);
+}
+
+.fab:hover .fab-label,
+.fab:focus-visible .fab-label { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+@media (hover: none) {
+    .fab-label { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fab { transition: none; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 968px) {
     .nav-menu {
@@ -1952,7 +2037,7 @@ a { color: inherit; }
 
     .hero > .container { grid-template-columns: 1fr; }
     .hero-content { max-width: 640px; }
-    .hero-visual { max-width: 340px; margin-top: 1rem; order: -1; }
+    .hero-visual { max-width: 320px; margin-top: 1rem; order: -1; }
 
     .stats-row { grid-template-columns: repeat(3, 1fr); }
     .stat-item { border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.09); }
@@ -1962,19 +2047,62 @@ a { color: inherit; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
 }
 
+/* ---------- Phones / small tablets ---------- */
 @media (max-width: 640px) {
     .container { padding: 0 18px; }
 
-    .hero-cta { flex-direction: column; align-items: stretch; }
-    .hero-cta .btn { justify-content: center; }
+    /* Tighter, better-proportioned type on small screens */
+    .hero-title { font-size: clamp(2rem, 8.5vw, 2.6rem); line-height: 1.08; }
+    .hero-description { font-size: 1rem; line-height: 1.65; }
+    .section-header h2 { font-size: clamp(1.6rem, 6.6vw, 2rem); }
+    .section-header p { font-size: 0.98rem; }
+    .page-hero h1 { font-size: clamp(1.9rem, 7.6vw, 2.5rem); }
+    .page-hero p { font-size: 1rem; }
+    .contact-cta-title { font-size: clamp(1.75rem, 7.4vw, 2.3rem); }
+    .contact-cta-sub { font-size: 0.98rem; }
 
-    .stats-row { grid-template-columns: 1fr 1fr; }
+    /* Single-column card grids — avoids overflow on narrow phones */
+    .solutions-grid,
+    .products-grid,
+    .features-grid,
+    .about-grid,
+    .commitment-grid { grid-template-columns: 1fr; }
 
-    .footer-grid { grid-template-columns: 1fr; }
-
+    /* CTAs stack full-width */
+    .hero-cta,
+    .cta-buttons { flex-direction: column; align-items: stretch; }
+    .hero-cta .btn,
+    .cta-buttons .btn { justify-content: center; }
     .btn { width: 100%; justify-content: center; }
     .contact-form-wrapper .btn,
     .form-button { width: 100%; }
+
+    .stats-row { grid-template-columns: 1fr 1fr; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; text-align: left; }
+
+    /* The faint hero watermark clutters narrow, centered heroes */
+    .page-hero-visual { display: none; }
+
+    /* Slimmer, calmer capabilities ribbon */
+    .marquee-item { font-size: 0.72rem; gap: 1.9rem; letter-spacing: 0.12em; }
+    .marquee-track { gap: 1.9rem; }
+
+    /* Contact cards breathe a little more */
+    .contact-card { padding: 1rem 1.1rem; gap: 0.9rem; }
+    .cc-icon { width: 40px; height: 40px; }
+
+    /* Keep floating buttons comfortably tappable but out of the way */
+    .fab { width: 52px; height: 52px; }
+    .fab svg { width: 24px; height: 24px; }
+    .floating-contact { gap: 0.7rem; }
+}
+
+/* ---------- Very small phones ---------- */
+@media (max-width: 380px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .hero-title { font-size: 1.85rem; }
+    .industry-tag { padding: 0.65rem 1.15rem; font-size: 0.88rem; }
 }
 
 /* ---------- Motion / a11y ---------- */
