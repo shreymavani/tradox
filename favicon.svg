@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <!-- Tradox Global "DDO" mark, centered in a square tab-icon canvas -->
+  <g transform="translate(0,20)" fill="#4A90E2">
+    <!-- Left "D" -->
+    <path d="M 0 20 A 20 20 0 0 1 20 0 L 20 40 A 20 20 0 0 1 0 20 Z"/>
+    <!-- Middle "D" -->
+    <path d="M 20 0 A 20 20 0 0 1 40 20 A 20 20 0 0 1 20 40 L 20 0 Z"/>
+    <!-- Right "O" -->
+    <circle cx="60" cy="20" r="20"/>
+  </g>
+</svg>
