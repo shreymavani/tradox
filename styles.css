@@ -696,6 +696,74 @@ a { color: inherit; }
 .why-choose-us { background: var(--white); }
 .industries { background: var(--white); }
 
+/* ---------- Trusted-by proof band (compact, below hero) ---------- */
+.clients-strip {
+    padding: 2.25rem 0 2.5rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+}
+
+.clients-strip-label {
+    margin: 0 0 1.6rem;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.clients-marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.clients-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: clientsScroll 42s linear infinite;
+}
+
+.clients-marquee:hover .clients-track { animation-play-state: paused; }
+
+/* Equal horizontal padding per item keeps the two duplicated sets perfectly
+   aligned, so the -50% loop is seamless. */
+.client-logo {
+    flex: 0 0 auto;
+    height: 54px;
+    padding: 0 clamp(1.5rem, 3.2vw, 3rem);
+    display: grid;
+    place-items: center;
+}
+
+.client-logo img {
+    max-height: 54px;
+    width: auto;
+    max-width: 190px;
+    object-fit: contain;
+    /* Cropped logos sit on white; multiply drops the white into the tinted band */
+    mix-blend-mode: multiply;
+    filter: grayscale(100%);
+    opacity: 0.62;
+    transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+}
+
+.client-logo:hover img {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.06);
+}
+
+@keyframes clientsScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
 /* Landing-page "Why Tradox" runs on a dark blue band */
 .why-choose-dark {
     background: var(--grad-ink);
@@ -2086,6 +2154,18 @@ a { color: inherit; }
     .page-hero p { font-size: 1rem; }
     .contact-cta-title { font-size: clamp(1.75rem, 7.4vw, 2.3rem); }
     .contact-cta-sub { font-size: 0.98rem; }
+
+    /* Compact trusted-by band */
+    .clients-strip { padding: 1.75rem 0 2rem; }
+    .clients-strip-label {
+        font-size: 0.66rem;
+        letter-spacing: 0.12em;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+        padding: 0 0.5rem;
+    }
+    .client-logo { height: 40px; padding: 0 1.4rem; }
+    .client-logo img { max-height: 40px; max-width: 130px; opacity: 0.7; }
 
     /* Single-column card grids — avoids overflow on narrow phones */
     .solutions-grid,
