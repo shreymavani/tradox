@@ -726,7 +726,7 @@ a { color: inherit; }
     display: flex;
     align-items: center;
     width: max-content;
-    animation: clientsScroll 42s linear infinite;
+    animation: clientsScroll 22s linear infinite;
 }
 
 .clients-marquee:hover .clients-track { animation-play-state: paused; }
