@@ -327,4 +327,16 @@ document.addEventListener('DOMContentLoaded', () => {
             );
         });
     });
+
+    // Client logo marquee: on touch, pause only while pressed, resume on release.
+    // (Hover-pause is handled in CSS and limited to fine-pointer devices.)
+    const clientsMarquee = document.querySelector('.clients-marquee');
+    const clientsTrack = clientsMarquee && clientsMarquee.querySelector('.clients-track');
+    if (clientsTrack) {
+        const pressPause = () => clientsTrack.classList.add('is-pressing');
+        const pressResume = () => clientsTrack.classList.remove('is-pressing');
+        clientsMarquee.addEventListener('touchstart', pressPause, { passive: true });
+        clientsMarquee.addEventListener('touchend', pressResume);
+        clientsMarquee.addEventListener('touchcancel', pressResume);
+    }
 });

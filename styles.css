@@ -729,7 +729,14 @@ a { color: inherit; }
     animation: clientsScroll 22s linear infinite;
 }
 
-.clients-marquee:hover .clients-track { animation-play-state: paused; }
+/* Desktop (mouse) pauses on hover. Excluded on touch so a tap doesn't
+   trigger a sticky :hover that leaves the marquee frozen. */
+@media (hover: hover) and (pointer: fine) {
+    .clients-marquee:hover .clients-track { animation-play-state: paused; }
+}
+
+/* Touch: pause only while the finger is held down, resume on release. */
+.clients-track.is-pressing { animation-play-state: paused; }
 
 /* Equal horizontal padding per item keeps the two duplicated sets perfectly
    aligned, so the -50% loop is seamless. */
