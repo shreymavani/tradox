@@ -748,14 +748,11 @@ a { color: inherit; }
     object-fit: contain;
     /* Cropped logos sit on white; multiply drops the white into the tinted band */
     mix-blend-mode: multiply;
-    filter: grayscale(100%);
-    opacity: 0.62;
-    transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+    opacity: 1;
+    transition: transform 0.35s ease;
 }
 
 .client-logo:hover img {
-    filter: grayscale(0);
-    opacity: 1;
     transform: scale(1.06);
 }
 
@@ -2165,7 +2162,7 @@ a { color: inherit; }
         padding: 0 0.5rem;
     }
     .client-logo { height: 40px; padding: 0 1.4rem; }
-    .client-logo img { max-height: 40px; max-width: 130px; opacity: 0.7; }
+    .client-logo img { max-height: 40px; max-width: 130px; }
 
     /* Single-column card grids — avoids overflow on narrow phones */
     .solutions-grid,
