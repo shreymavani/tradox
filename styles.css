@@ -696,6 +696,32 @@ a { color: inherit; }
 .why-choose-us { background: var(--white); }
 .industries { background: var(--white); }
 
+/* ---------- Thermocol fragile-protection illustration ---------- */
+.protect-scene {
+    max-width: 640px;
+    margin: 0 auto 3.75rem;
+    padding: 1.5rem 1.75rem 1.1rem;
+    background: linear-gradient(160deg, #f4f8fc, #e8eff7);
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    box-shadow: 0 22px 46px rgba(18, 49, 92, 0.10);
+}
+
+.protect-scene svg { width: 100%; height: auto; display: block; }
+
+.protect-caption {
+    text-align: center;
+    margin: 0.85rem 0 0;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--muted);
+}
+
+@media (max-width: 640px) {
+    .protect-scene { padding: 1.1rem 1.1rem 0.9rem; border-radius: 20px; margin-bottom: 2.75rem; }
+    .protect-caption { font-size: 0.85rem; }
+}
+
 /* ---------- Trusted-by proof band (compact, below hero) ---------- */
 .clients-strip {
     padding: 2.25rem 0 2.5rem;
@@ -1680,6 +1706,14 @@ a { color: inherit; }
 }
 .product-image svg .det { stroke-width: 1.7; }
 .product-card:hover .product-image svg { transform: scale(1.06) translateY(-2px); }
+
+.product-image img {
+    width: auto;
+    height: 128px;
+    max-width: 94%;
+    object-fit: contain;
+    border-radius: 10px;
+}
 
 /* fluted baseline on product imagery */
 .product-image::after {
