@@ -66,7 +66,14 @@
 body.theme-kraft { --page-accent: #C0731F; --page-accent-2: #E7A24A; --page-tint: #FBF0E1; --page-glow: rgba(200, 122, 46, 0.34); }
 body.theme-cyan  { --page-accent: #1487A6; --page-accent-2: #35B5D1; --page-tint: #E2F4F9; --page-glow: rgba(53, 181, 209, 0.32); }
 body.theme-paper { --page-accent: #3F8552; --page-accent-2: #5FB27A; --page-tint: #E7F5EC; --page-glow: rgba(95, 178, 122, 0.32); }
-body.theme-mono  { --page-accent: #7A4FB0; --page-accent-2: #A579D8; --page-tint: #F1EAFB; --page-glow: rgba(165, 121, 216, 0.32); }
+body.theme-mono  {
+    --page-accent: #7A4FB0;
+    --page-accent-2: #A579D8;
+    --page-tint: #F1EAFB;
+    /* Matches Gemini product mockup backgrounds (sampled from asset corners) */
+    --product-photo-bg: #E8DEF5;
+    --page-glow: rgba(165, 121, 216, 0.32);
+}
 
 /* ---------- Base ---------- */
 html {
@@ -1707,11 +1714,20 @@ a { color: inherit; }
 .product-image svg .det { stroke-width: 1.7; }
 .product-card:hover .product-image svg { transform: scale(1.06) translateY(-2px); }
 
-/* Photo product cards: fill the entire image band edge-to-edge */
+/* Photo product cards: show full image (unchanged assets), scaled to the band */
 .product-image:has(> img) {
-    height: 240px;
-    display: block;
+    height: 260px;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
     padding: 0;
+    background: var(--product-photo-bg, var(--page-tint));
+}
+
+body.theme-mono .product-range {
+    background:
+        radial-gradient(130% 120% at 50% 0%, color-mix(in srgb, var(--page-accent) 12%, transparent), transparent 58%),
+        linear-gradient(180deg, var(--page-tint) 0%, var(--product-photo-bg) 42%, var(--product-photo-bg) 100%);
 }
 
 .product-image > img {
@@ -1719,13 +1735,13 @@ a { color: inherit; }
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     border-radius: 0;
 }
 
 .product-card:hover .product-image > img {
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 /* fluted baseline on product imagery */
@@ -2206,7 +2222,7 @@ a { color: inherit; }
     .contact-cta-title { font-size: clamp(1.75rem, 7.4vw, 2.3rem); }
     .contact-cta-sub { font-size: 0.98rem; }
 
-    .product-image:has(> img) { height: 200px; }
+    .product-image:has(> img) { height: 220px; }
 
     /* Compact trusted-by band */
     .clients-strip { padding: 1.75rem 0 2rem; }
