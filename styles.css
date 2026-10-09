@@ -64,7 +64,19 @@
 
 /* Interior page themes, grounded in each product's material */
 body.theme-kraft { --page-accent: #C0731F; --page-accent-2: #E7A24A; --page-tint: #FBF0E1; --page-glow: rgba(200, 122, 46, 0.34); }
-body.theme-cyan  { --page-accent: #1487A6; --page-accent-2: #35B5D1; --page-tint: #E2F4F9; --page-glow: rgba(53, 181, 209, 0.32); }
+body.theme-cyan  {
+    --page-accent: #1487A6;
+    --page-accent-2: #35B5D1;
+    --page-tint: #E2F4F9;
+    --product-photo-bg: #E9F3F8;
+    --page-glow: rgba(53, 181, 209, 0.32);
+}
+
+body.theme-cyan .product-range {
+    background:
+        radial-gradient(130% 120% at 50% 0%, color-mix(in srgb, var(--page-accent) 12%, transparent), transparent 58%),
+        linear-gradient(180deg, var(--page-tint) 0%, var(--product-photo-bg) 42%, var(--product-photo-bg) 100%);
+}
 body.theme-paper { --page-accent: #3F8552; --page-accent-2: #5FB27A; --page-tint: #E7F5EC; --page-glow: rgba(95, 178, 122, 0.32); }
 body.theme-mono  {
     --page-accent: #7A4FB0;
