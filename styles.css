@@ -1499,6 +1499,15 @@ a { color: inherit; }
 
 .footer-col a:hover { color: var(--kraft-soft); }
 
+.footer-col ul li a {
+    color: rgba(233, 242, 254, 0.92);
+    text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+    color: var(--kraft-soft);
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
